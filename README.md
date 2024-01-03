@@ -1,57 +1,53 @@
 # Time Series Causal Impact
 
 # Summary
-This project aims to analyze the impact of the Covid-19 lockdown on the stock values of pharmaceutical companies and other industries using the Causal Impact framework. By employing global economic indicators as counterfactuals, I seek to understand the specific influence of the lockdown on the stock performance of pharmaceutical companies and compare it with other industries.
+Explore the profound impact of the Covid-19 lockdown on stock values, particularly focusing on pharmaceutical companies and other industries. Leveraging the Causal Impact framework and global economic indicators, this project aims to provide a nuanced understanding of how certain industries/companies were initially affected by the economic impact of lockdown and their recovery trends.
 
 # Goals
 The primary goals of this project are as follows:
 
-- Assessment of Impact: Evaluate and <u>quantify</u> the causal impact of Covid-19 lockdowns on the stock values of pharmaceutical companies and other selected industries. I have the hypothesis that although COVID affected all industries including pharma, this is more resilient and had a faster recovery; especially those pharma companies which developed a vaccine (e.g. GSK, Pfizer).
+- Assessment of Impact: Evaluate and quantify the causal impact of Covid-19 lockdowns on the stock values of pharmaceutical companies and selected industries. The project hypothesizes that pharmaceutical companies, especially those developing vaccines (e.g., GSK, Pfizer), exhibit resilience and a faster recovery compared to other sectors.
 
-- Counterfactual Analysis: Use global economic indicators as counterfactuals to establish a baseline for stock performance. Ideally counterfactuals would helps us to assess the predicted performance if no treatment (e.g. COVID pandemic) would have been implemented. However, in this cases this is unrealistic as the COVID pandemic affected all economic sectors in multiple ways. However, the use of global indicators as counterfactuals help me to establish whether pharmaceutical companies had a stronger/faster recovery if the economic inactivity due to COVID lockdown.
+- Counterfactual Analysis: Utilise global economic indicators as counterfactuals to establish a baseline for stock performance. While traditional control groups may not be feasible due to the widespread impact of the pandemic, global indicators like S&P 500, Dow Jones Industrial, and MSCI World Index help assess the unique recovery patterns of pharmaceutical companies amid the economic slowdown.
 
-- Insights Generation: Derive meaningful insights into the differential impact of lockdown measures on pharmaceutical stocks compared to different pharmaceutical industries (e.g. those which developed a vaccine vs those which did not) or other industries.
+- Insights Generation: Derive meaningful insights into the varying impact of lockdown measures on pharmaceutical stocks, comparing different pharmaceutical industries (e.g., vaccine developers vs. non-developers) and other sectors.
 
 # About the Data
-
-Daily Adjusted Closed Stock price was obtained using the yahoo finance API/library.Then monthly average was computed to address missing values and daily fluctuations  
+Daily Adjusted Closed Stock prices were sourced using the Yahoo Finance API/library. Monthly averages were computed to address missing values and daily fluctuations, ensuring a robust dataset for analysis.
 
 # Approach
 ## Causal Impact Framework
-The Causal Impact framework is employed to estimate the causal effect of Covid-19 lockdowns on stock values. It uses a Bayesian structural time-series model to compare the observed stock prices during the lockdown period with a counterfactual scenario (expected stock prices without the lockdown). This enables the isolation of the causal impact attributable to the lockdown.
-
-The Google Data Science team created an [R package](https://google.github.io/CausalImpact/CausalImpact.html) for causal impact analysis. Several people have attempted to re-implement it in python.
+Employing the Causal Impact framework, a Bayesian structural time-series model is utilized to estimate the causal effect of Covid-19 lockdowns on stock values. By comparing observed stock prices during the lockdown period with a counterfactual scenario (expected prices without the lockdown), the project isolates the causal impact attributable to the lockdown
 
 ## Global Economic Indicators as Counterfactuals
-In addition to traditional control groups, global economic indicators such as S&P 500 Index, Dow Jones Industrial and MSCI World Index are used as counterfactuals. This approach aims to capture broader economic trends in response to the COVID lockdown and the resultant economical slow down.
+In addition to traditional control groups, global economic indicators such as S&P 500, Dow Jones Industrial, and MSCI World Index are incorporated as counterfactuals. This approach captures broader economic trends in response to the COVID lockdown and the resulting economic slowdown.
 
 # Observations
 ## Preliminary Findings
-
-In March 2020, the global economy suffered an recession. However, observations indicate variations during the following 3-6 months in the impact of lockdowns on different industries. Pharmaceutical stocks, for instance, might display resilience compared to sectors more sensitive to economic downturns.
+In the aftermath of the March 2020 global economic recession, variations in the impact of lockdowns on different industries were observed over the subsequent 3-6 months. Pharmaceutical stocks displayed resilience, especially those of companies involved in vaccine development (e.g., Pfizer, GSK), compared to sectors more sensitive to economic downturns (e.g., Coca-Cola, Inditext).
 
 ### Pfizer
 ![Pfizer Causal Impact Python](https://github.com/JPonsa/causal_inference_ts/blob/main/figures/python/PFE.png)
 ### GSK
 ![GSK Impact Python](https://github.com/JPonsa/causal_inference_ts/blob/main/figures/python/GSK.png)
+### Roche
+![Roche Impact Python](https://github.com/JPonsa/causal_inference_ts/blob/main/figures/python/ROG.png)
 ### Coca-Cola
 ![KO Causal Impact Python](https://github.com/JPonsa/causal_inference_ts/blob/main/figures/python/KO.png)
 ### Inditext (Zara, Massimo Dutti, other)
 ![InDITEXT Causal Impact Python](https://github.com/JPonsa/causal_inference_ts/blob/main/figures/python/ITX.MC.png)
 
 ### Global Economy Indicators
-<iframe src= "https://github.com/JPonsa/causal_inference_ts/blob/main/figures/global%20economy.html" 
-        width="100%" 
-        height="300px"></iframe>
+![Global Economy](https://github.com/JPonsa/causal_inference_ts/blob/main/figures/global%20economy.png)
 
 
 ## Visualizations
 The project includes visualizations, such as time series plots and causal impact plots, to present the findings comprehensively. These visual aids enhance the interpretability of results.
 
 ## Inconsistent results
-I obtained different result when analysing the same data using either the [original R package](https://google.github.io/CausalImpact/CausalImpact.html) (from Google) or [a port](https://github.com/jamalsenouci/causalimpact/) to pythons
+Notably, inconsistent results were obtained when analyzing the same data using both the [original R package](https://google.github.io/CausalImpact/CausalImpact.html) from Google and a [Python port](https://github.com/jamalsenouci/causalimpact/). Discrepancies were observed in the analysis for Pfizer, emphasizing the need for careful consideration of analysis tools.
 
-Below I am showing the analysis for Pfizer using the Python library or the R package. It can be observed that in the Python analysis, the 
+Below I am showing the analysis for Pfizer using the Python library or the R package. It can be observed that in the Python analysis the predicted trend is influenced by the economic indicators use as covariants; while in the R package is driven mainly by the historic values. This leads to different counterfactuals and conclusions. In this particular scenario it is hard to determine which one is right. In an ideal scenario we would (1) have better covariants unaffected by the treatment and (2) able to conduct an A/B testing for further validation. 
 
 ### Python analysis
 ![Pfizer Causal Impact Python](https://github.com/JPonsa/causal_inference_ts/blob/main/figures/python/PFE.png)
@@ -59,14 +55,9 @@ Below I am showing the analysis for Pfizer using the Python library or the R pac
 ![Pfizer Causal Impact R](https://github.com/JPonsa/causal_inference_ts/blob/main/figures/R/PFE.png)
 
 # Future Work
-## Refinement of Models
-Iterative refinement of the Bayesian structural time-series model and incorporation of additional variables may enhance the accuracy of impact estimates.
-
-## Sector-Specific Analysis
-Further exploration into sub-sectors within pharmaceuticals and other industries may reveal nuanced impacts that the current analysis may overlook.
-
-## External Factors
-Considering external factors, such as regulatory changes and vaccine developments, in the analysis may provide a more comprehensive understanding of stock value dynamics.
+- Explore other libraries for causal impact analysis.
+- Explore other covariants.
+- Implement some Time Series forecasting. I did some preliminary analysis using SARIMAX, VARMAX and others.
 
 # References:
 Brodersen KH, Gallusser F, Koehler J, Remy N, Scott SL. Inferring causal impact using Bayesian structural time-series models. Annals of Applied Statistics, 2015, Vol. 9, No. 1, 247-274. http://research.google.com/pubs/pub41854.html
