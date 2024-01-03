@@ -1,0 +1,13 @@
+,Average,Cumulative
+Actual,50,451
+Predicted,44,397
+95% CI,"[39, 49]","[351, 442]"
+ , , 
+Absolute Effect,5,53
+95% CI,"[11, 0]","[99, 8]"
+ , , 
+Relative Effect,13.5%,13.5%
+95% CI,"['25.0%', '2.1%']","['25.0%', '2.1%']"
+ , , 
+P-value,0.0%, 
+Prob. of Causal Effect,100.0%, 
