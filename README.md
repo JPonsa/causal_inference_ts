@@ -30,11 +30,25 @@ In addition to traditional control groups, global economic indicators such as S&
 
 In March 2020, the global economy suffered an recession. However, observations indicate variations during the following 3-6 months in the impact of lockdowns on different industries. Pharmaceutical stocks, for instance, might display resilience compared to sectors more sensitive to economic downturns.
 
+### Pfizer
+![Pfizer Causal Impact Python](https://github.com/JPonsa/causal_inference_ts/blob/main/figures/python/PFE.png)
+### GSK
+![GSK Impact Python](https://github.com/JPonsa/causal_inference_ts/blob/main/figures/python/GSK.png)
+### Coca-Cola
+![KO Causal Impact Python](https://github.com/JPonsa/causal_inference_ts/blob/main/figures/python/KO.png)
+### Inditext (Zara, Massimo Dutti, other)
+![InDITEXT Causal Impact Python](https://github.com/JPonsa/causal_inference_ts/blob/main/figures/python/ITX.MC.png)
+
 ## Visualizations
 The project includes visualizations, such as time series plots and causal impact plots, to present the findings comprehensively. These visual aids enhance the interpretability of results.
 
 ## Inconsistent results
 I obtained different result when analysing the same data using either the [original R package](https://google.github.io/CausalImpact/CausalImpact.html) (from Google) or [a port](https://github.com/jamalsenouci/causalimpact/) to pythons
+
+### Python analysis
+![Pfizer Causal Impact Python](https://github.com/JPonsa/causal_inference_ts/blob/main/figures/python/PFE.png)
+### R analysis
+![Pfizer Causal Impact R](https://github.com/JPonsa/causal_inference_ts/blob/main/figures/R/PFE.png)
 
 # Future Work
 ## Refinement of Models
