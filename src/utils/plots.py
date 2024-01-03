@@ -26,7 +26,7 @@ def timeline_px(df:pd.DataFrame, event_x:str, title:str=None,
     ])
     
     if write_html:
-        fig.write_html(write_html)
+        fig.write_html(write_html, full_html=False, include_plotlyjs='cdn')
     
     fig.show()
     
