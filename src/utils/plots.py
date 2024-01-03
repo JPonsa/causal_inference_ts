@@ -4,7 +4,7 @@ import plotly_express as px
 import seaborn as sns
 
 def timeline_px(df:pd.DataFrame, event_x:str, title:str=None,
-                write_html:str=None,
+                write_html:str=None, write_image:str=None,
                 labels:dict={"value":"value", "index":"index", "variables":"variables"}):
 
     fig = px.line(df, x=df.index, y=df.columns, title=title, labels=labels)
@@ -26,7 +26,10 @@ def timeline_px(df:pd.DataFrame, event_x:str, title:str=None,
     ])
     
     if write_html:
-        fig.write_html(write_html, full_html=False, include_plotlyjs='cdn')
+        fig.write_html(write_html)
+    
+    if write_image:
+        fig.write_image(write_image, format='png',engine='kaleido')
     
     fig.show()
     
